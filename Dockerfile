@@ -9,7 +9,7 @@ RUN yarn global add grunt-cli && \
     yarn install && \
     grunt
 
-FROM python:3.6
+FROM python:3.12
 ARG glider_gid_uid=1000
 
 RUN mkdir -p /glider-dac-status /mpl_config
@@ -32,7 +32,7 @@ RUN apt-get update && \
 
 
 ENV FLASK_ENV="PRODUCTION"
-COPY --from=buildstep /web/ /glider-dac-status/web
+COPY --=buildstep /web/ /glider-dac-status/web
 RUN chown -R glider:glider /glider-dac-status/ /mpl_config
 
 USER glider
